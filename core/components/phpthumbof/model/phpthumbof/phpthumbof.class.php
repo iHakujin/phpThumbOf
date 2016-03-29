@@ -303,7 +303,9 @@ class ptThumbnail {
                         $this->cacheFilename = substr($this->cacheFilename,0,$cut);
                     }
                 }
-                $this->cacheFilename .= '.'.md5(serialize($this->options)).$this->modx->resource->get('id');
+                if (is_object($this->modx->resource)) {
+                    $this->cacheFilename .= '.'.md5(serialize($this->options)).$this->modx->resource->get('id');
+                }
                 $this->cacheFilename .= '.' . (!empty($this->options['f']) ? $this->options['f'] : 'png');
             }
         }
